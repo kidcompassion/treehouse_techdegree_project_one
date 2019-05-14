@@ -11,31 +11,36 @@ var quotes = [
     quote: "More and more often, we all make silent calculations about who is entitled to what rights, and who is not.",
     source: "Matt Taibbi",
     citation: "The Divide",
-    year: "2014"
+    year: "2014",
+    tags: ["Economics", "Politics"]
   },
   {
     quote: "He suggested a new definition of the nerd: a person who knows his own mind well enough to mistrust it.",
     source: "Michael Lewis",
     citation: "The Undoing Project",
-    year: "2016"
+    year: "2016",
+    tags: ["Psychology"]
   },
   {
     quote: "To be fully alive, fully human, and completely awake is to be continually thrown out of the nest.",
     source: "Pema Chodron",
     citation: "When Things Fall Apart",
-    year: "1996"
+    year: "1996",
+    tags: ["Buddhism", "Philosophy"]
   },
   {
     quote: "We're all building our world, right now, in real time. Let's build it better.",
     source: "Lindy West",
     citation: "Shrill: Notes from a Loud Woman",
-    year: "2016"
+    year: "2016",
+    tags: ["Essays", "Humour", "Feminism"]
   },
   {
     quote: "It is a mark of great spiritual laziness to take the world we inherit as a given.",
     source: "Ethan Nichtern",
     citation: "The Road Home",
-    year: "2015"
+    year: "2015",
+    tags: ["Buddhism", "Philosophy"]
   },
   {
     quote: "I take this very scientific attitude that everything you’ve learned is just provisional, that it’s always open to recantation, refutation, or questioning.",
@@ -77,6 +82,11 @@ function printQuote() {
   // Since our only required properties are quote and source, check that the year exists before rendering
   if(selectedQuote.year){
     randomQuoteHTML += '<span class="year">'+ selectedQuote.year+'</span>';
+  }
+
+  // If there is a tags property set, and it has at least one item in it, join into a comma separated list and add to HTML
+  if(selectedQuote.tags && selectedQuote.tags.length > 0){
+    randomQuoteHTML += '<p class="tags">Tagged with: ' + selectedQuote.tags.join(', ');
   }
 
   // Close my paragrap
