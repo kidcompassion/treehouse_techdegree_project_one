@@ -3,44 +3,88 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
+/* Create quotes array, to hold all quote objects
+Quote and source are required on all objects, citation and year only on 1 */
 
+var quotes = [
+  {
+    quote: "More and more often, we all make silent calculations about who is entitled to what rights, and who is not.",
+    source: "Matt Taibbi",
+    citation: "The Divide",
+    year: "2014"
+  },
+  {
+    quote: "He suggested a new definition of the nerd: a person who knows his own mind well enough to mistrust it.",
+    source: "Michael Lewis",
+    citation: "The Undoing Project",
+    year: "2016"
+  },
+  {
+    quote: "To be fully alive, fully human, and completely awake is to be continually thrown out of the nest.",
+    source: "Pema Chodron",
+    citation: "When Things Fall Apart",
+    year: "1996"
+  },
+  {
+    quote: "We're all building our world, right now, in real time. Let's build it better.",
+    source: "Lindy West",
+    citation: "Shrill: Notes from a Loud Woman",
+    year: "2016"
+  },
+  {
+    quote: "It is a mark of great spiritual laziness to take the world we inherit as a given.",
+    source: "Ethan Nichtern",
+    citation: "The Road Home",
+    year: "2015"
+  },
+  {
+    quote: "I take this very scientific attitude that everything you’ve learned is just provisional, that it’s always open to recantation, refutation, or questioning.",
+    source: "Aaron Swartz"
+  }
+];
 
-/*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-  Add the `citation` property to at least one object in the array.
-  Add the `year` property to at least one object in the array.
-  Use console.log() to log your array of quotes to the console.
-***/
+// Check to make sure my array is rendering as expected
+console.log(quotes);
 
+/* Set up function to generate a random number based on the number of quotes. */
 
+function getRandomQuote() {
+  // Generate random number using total number of available quotes
+  var randomNumber = Math.floor(Math.random() * quotes.length);
+  // Use the random number to return a random quote
+  return quotes[randomNumber];
+}
 
+/* Build a function to translate quote object into the provided HTML template */
 
-/***
-  Create the `getRandomQuote` function to:
-   - Create a variable to store a random number 
-   - Cse the random number to `return` a random quote object from the `quotes` array.
-***/
+function printQuote() {
 
+  // Run the getRandomQuote function to return the random quote
+  var selectedQuote = getRandomQuote();
 
+  // Set up a variable to hold the HTML to be injected into the template
+  var randomQuoteHTML = '';
 
+  // Concatenate the HTML to be used in the template
+  randomQuoteHTML ='<p class="quote">' + selectedQuote.quote + '</p>';
+  randomQuoteHTML +='<p class="source">' + selectedQuote.source;
 
-/***
-  Create the `printQuote` function to: 
-   - Call the `getRandomQuote` function and assign it to a variable.
-   - Create a variable for the HTML string and set it equal to an empty string.
-   - Use the HTML template in the instructions or the markup in the index.html file, AND 
-     the random quote vairable to build your HTML string.
-   - Add the quote and source section to the HTML string.
-   - Use an if statement to check for the citation property before adding it to the HTML string.
-   - Use an if statement to check for the year property before adding it to the HTML string.
-   - Don't forget to close that final `p` tag.
-   - Set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
+  // Since our only required properties are quote and source, check that the citation exists before rendering
+  if(selectedQuote.citation){
+    randomQuoteHTML += '<span class="citation">'+ selectedQuote.citation +'</span>';
+  }
 
+  // Since our only required properties are quote and source, check that the year exists before rendering
+  if(selectedQuote.year){
+    randomQuoteHTML += '<span class="year">'+ selectedQuote.year+'</span>';
+  }
 
+  // Close my paragrap
+  randomQuoteHTML += '</p>';
+  
+  // Add concatenated markup to the wrapper #quote-box
+  document.getElementById('quote-box').innerHTML = randomQuoteHTML;
+}
 
 
 /***
