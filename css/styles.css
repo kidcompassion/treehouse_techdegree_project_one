@@ -74,6 +74,7 @@ body {
 .tags {
   text-align: right;
   margin-right: 4em;
+  line-height: 1.1;
 }
 
 #loadQuote {
